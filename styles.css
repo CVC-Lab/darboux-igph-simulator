@@ -937,3 +937,83 @@ canvas {
     height: 140px;
   }
 }
+
+/* --- Heatmap colour-scale legend (γ′ (c)) ----------------------------- */
+
+.def-knot-scale {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(193, 216, 248, 0.08);
+  border-radius: 14px;
+}
+
+.def-knot-scale-meta {
+  grid-column: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: rgba(193, 216, 248, 0.6);
+}
+
+.def-knot-scale-title {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+.def-knot-scale-mode {
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+}
+
+.def-knot-scale-bar {
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: rgba(193, 216, 248, 0.7);
+}
+
+.def-knot-scale-gradient {
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #7c3aed 0%, #b4deff 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.def-knot-scale-end {
+  white-space: nowrap;
+}
+
+.def-knot-scale-toggle {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  padding: 6px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .def-knot-scale {
+    grid-template-columns: 1fr;
+  }
+  .def-knot-scale-toggle {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+}

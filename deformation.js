@@ -6,6 +6,9 @@ const ARTIFACTS_ROOT = "./artifacts_out";
 const MANIFEST_URL = `${ARTIFACTS_ROOT}/manifest.json`;
 const CURVE_SAMPLES = 256;
 const KNOT_STACK_THRESHOLD = -3.0; // count gamma_i < this as "stacked"
+// Absolute color range for Δ_i. softplus(γ=0)=ln(2)≈0.69; softplus(γ≈1)≈1.31.
+// Mapping [0, 1.5] keeps a small headroom above a typical uniform-knot value.
+const KNOT_ABSOLUTE_RANGE = [0.0, 1.5];
 
 const COLORS = {
   background: "#07111d",
@@ -46,6 +49,10 @@ const els = {
   flowEq: document.getElementById("def-flow-equation"),
   curveEq: document.getElementById("def-curve-equation"),
   knotStrip: document.getElementById("def-knot-strip"),
+  knotScaleToggle: document.getElementById("def-knot-scale-toggle"),
+  knotScaleLabel: document.getElementById("def-knot-scale-label"),
+  knotScaleMin: document.getElementById("def-knot-scale-min"),
+  knotScaleMax: document.getElementById("def-knot-scale-max"),
 };
 
 const state = {
@@ -57,6 +64,9 @@ const state = {
   framesPerSecond: 30,
   // accumulator across rAF ticks so we can advance one frame at a time
   frameAccumulator: 0,
+  // 'absolute' (default) maps Δ_i ∈ KNOT_ABSOLUTE_RANGE → color, comparable
+  // across runs; 'relative' rescales per-bundle for max in-run contrast.
+  knotScale: "absolute",
 };
 
 const ctx = els.canvas ? els.canvas.getContext("2d") : null;
@@ -326,6 +336,24 @@ function drawFrame(bundle, frameIndex) {
 // X axis = parameter index 0..n_ctrl-1; Y axis = time (top = step 0, bottom =
 // step T). Color brightness = Δ_i value (bright = full interval, dark =
 // collapsed). A horizontal pin marks the current frame.
+function updateKnotScaleLegend(dMin, dMax) {
+  if (els.knotScaleMin) els.knotScaleMin.textContent = `Δ = ${dMin.toFixed(2)}`;
+  if (els.knotScaleMax) els.knotScaleMax.textContent = `Δ = ${dMax.toFixed(2)}`;
+  if (els.knotScaleLabel) {
+    els.knotScaleLabel.textContent =
+      state.knotScale === "absolute" ? "absolute scale" : "per-run scale";
+  }
+  if (els.knotScaleToggle) {
+    els.knotScaleToggle.textContent =
+      state.knotScale === "absolute" ? "Switch to per-run" : "Switch to absolute";
+  }
+}
+
+function toggleKnotScale() {
+  state.knotScale = state.knotScale === "absolute" ? "relative" : "absolute";
+  if (state.bundle) drawKnotStrip(state.bundle, state.frameIndex);
+}
+
 function resizeKnotStripToDisplaySize() {
   if (!els.knotStrip) return;
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -360,17 +388,25 @@ function drawKnotStrip(bundle, frameIndex) {
   const nFrames = data.length;
   const nCtrl = data[0].length;
 
-  // Normalize Δ values per-bundle so the heatmap has good contrast: map
-  // [Δ_min, Δ_max] → [0, 1] for color interpolation.
-  let dMin = Infinity, dMax = -Infinity;
-  for (let f = 0; f < nFrames; f += 1) {
-    for (let i = 0; i < nCtrl; i += 1) {
-      const v = data[f][i];
-      if (v < dMin) dMin = v;
-      if (v > dMax) dMax = v;
+  // Decide the color-mapping range:
+  //  - "absolute": fixed KNOT_ABSOLUTE_RANGE so heatmaps are visually
+  //    comparable across runs.
+  //  - "relative": per-bundle [Δ_min, Δ_max] for max in-run contrast.
+  let dMin, dMax;
+  if (state.knotScale === "relative") {
+    dMin = Infinity; dMax = -Infinity;
+    for (let f = 0; f < nFrames; f += 1) {
+      for (let i = 0; i < nCtrl; i += 1) {
+        const v = data[f][i];
+        if (v < dMin) dMin = v;
+        if (v > dMax) dMax = v;
+      }
     }
+  } else {
+    [dMin, dMax] = KNOT_ABSOLUTE_RANGE;
   }
   const dRange = Math.max(dMax - dMin, 1e-6);
+  updateKnotScaleLegend(dMin, dMax);
 
   const cellW = width / nCtrl;
   const cellH = height / nFrames;
@@ -378,7 +414,9 @@ function drawKnotStrip(bundle, frameIndex) {
   for (let f = 0; f < nFrames; f += 1) {
     for (let i = 0; i < nCtrl; i += 1) {
       const v = data[f][i];
-      const t = (v - dMin) / dRange; // 0 = collapsed, 1 = full
+      // Clamp to [0, 1] so absolute-scale values outside the range still draw
+      // a valid color at the appropriate endpoint.
+      const t = Math.max(0, Math.min(1, (v - dMin) / dRange));
       const rgb = lerpRGB(COLORS.knotCollapsed, COLORS.knotFull, t);
       knotCtx.fillStyle = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
       knotCtx.fillRect(i * cellW, f * cellH, Math.ceil(cellW) + 1, Math.ceil(cellH) + 1);
@@ -625,6 +663,9 @@ function bindUI() {
 
   els.playBtn.addEventListener("click", togglePlay);
   els.resetBtn.addEventListener("click", resetPlayback);
+  if (els.knotScaleToggle) {
+    els.knotScaleToggle.addEventListener("click", toggleKnotScale);
+  }
 
   window.addEventListener("resize", () => {
     if (state.bundle) drawFrame(state.bundle, state.frameIndex);
