@@ -43,7 +43,7 @@
       "seed": 42,
       "schema_version": "0.1.0",
       "href": "oval_to_star_m1_adaptive_seed42_20260527T105829",
-      "web_bundle_ref": null
+      "web_bundle_ref": "web_bundle.json"
     },
     {
       "run_id": "oval_to_star_proposed_curriculum_seed42_20260527T102604",
@@ -53,6 +53,15 @@
       "schema_version": "0.1.0",
       "href": "oval_to_star_proposed_curriculum_seed42_20260527T102604",
       "web_bundle_ref": "web_bundle.json"
+    },
+    {
+      "run_id": "oval_to_star_proposed_curriculum_seed42_20260527T120519",
+      "example": "oval_to_star",
+      "method": "proposed_curriculum",
+      "seed": 42,
+      "schema_version": "0.1.0",
+      "href": "oval_to_star_proposed_curriculum_seed42_20260527T120519",
+      "web_bundle_ref": null
     }
   ]
 }
