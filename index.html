@@ -77,70 +77,6 @@
               </div>
             </article>
 
-            <article class="figure-card def-side-card">
-              <div class="figure-meta">
-                <div>
-                  <p class="figure-kicker">Latent state</p>
-                  <h3>Live metrics</h3>
-                </div>
-                <p class="figure-note">
-                  Sinkhorn divergence, kinetic energy, damped Hamiltonian.
-                </p>
-              </div>
-
-              <div class="def-metric-row">
-                <div class="metric-card">
-                  <span class="metric-label">
-                    <span class="metric-symbol" data-tex="S_\varepsilon">S_\varepsilon</span>
-                    <span class="metric-label-text">Sinkhorn divergence</span>
-                  </span>
-                  <span id="def-sinkhorn-value" class="metric-value">—</span>
-                  <span class="metric-help">
-                    OT discrepancy between current curve samples and target cloud.
-                  </span>
-                </div>
-                <div class="metric-card">
-                  <span class="metric-label">
-                    <span class="metric-symbol" data-tex="T(p)">T(p)</span>
-                    <span class="metric-label-text">kinetic energy</span>
-                  </span>
-                  <span id="def-kinetic-value" class="metric-value">—</span>
-                  <span class="metric-help">
-                    Quadratic form in the conjugate momenta.
-                  </span>
-                </div>
-                <div class="metric-card">
-                  <span class="metric-label">
-                    <span class="metric-symbol" data-tex="H_d">H_d</span>
-                    <span class="metric-label-text">damped Hamiltonian</span>
-                  </span>
-                  <span id="def-hamiltonian-value" class="metric-value">—</span>
-                  <span class="metric-help">
-                    Total shaped energy; should decrease under damping.
-                  </span>
-                </div>
-                <div class="metric-card">
-                  <span class="metric-label">
-                    <span class="metric-symbol" data-tex="\|\nabla_q V\|">\|\nabla_q V\|</span>
-                    <span class="metric-label-text">control-point grad</span>
-                  </span>
-                  <span id="def-grad-value" class="metric-value">—</span>
-                  <span class="metric-help">
-                    Norm of the Sinkhorn gradient with respect to control pts.
-                  </span>
-                </div>
-              </div>
-
-              <div class="meter-block">
-                <div class="meter-meta">
-                  <span>Progress</span>
-                  <span id="def-progress-percent">0%</span>
-                </div>
-                <div class="meter-track">
-                  <div id="def-progress-bar" class="meter-fill"></div>
-                </div>
-              </div>
-            </article>
           </div>
 
           <article class="figure-card def-knot-card">
@@ -216,6 +152,59 @@
         </section>
 
         <aside class="side-rail">
+          <article class="figure-card def-side-card">
+            <div class="figure-meta">
+              <div>
+                <p class="figure-kicker">Latent state</p>
+                <h3>Live metrics</h3>
+              </div>
+              <p class="figure-note">
+                Bound to the current frame.
+              </p>
+            </div>
+
+            <div class="def-metric-row">
+              <div class="metric-card">
+                <span class="metric-label">
+                  <span class="metric-symbol" data-tex="S_\varepsilon">S_\varepsilon</span>
+                  <span class="metric-label-text">Sinkhorn divergence</span>
+                </span>
+                <span id="def-sinkhorn-value" class="metric-value">—</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-label">
+                  <span class="metric-symbol" data-tex="T(p)">T(p)</span>
+                  <span class="metric-label-text">kinetic energy</span>
+                </span>
+                <span id="def-kinetic-value" class="metric-value">—</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-label">
+                  <span class="metric-symbol" data-tex="H_d">H_d</span>
+                  <span class="metric-label-text">damped Hamiltonian</span>
+                </span>
+                <span id="def-hamiltonian-value" class="metric-value">—</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-label">
+                  <span class="metric-symbol" data-tex="\|\nabla_q V\|">\|\nabla_q V\|</span>
+                  <span class="metric-label-text">control-point grad</span>
+                </span>
+                <span id="def-grad-value" class="metric-value">—</span>
+              </div>
+            </div>
+
+            <div class="meter-block">
+              <div class="meter-meta">
+                <span>Progress</span>
+                <span id="def-progress-percent">0%</span>
+              </div>
+              <div class="meter-track">
+                <div id="def-progress-bar" class="meter-fill"></div>
+              </div>
+            </div>
+          </article>
+
           <section class="math-panel">
             <div class="math-card">
               <span class="math-label">Run header</span>

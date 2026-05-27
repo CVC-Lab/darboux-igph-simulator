@@ -48,15 +48,14 @@ body.capture-mode {
 }
 
 .toolbar {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+  display: flex;
+  align-items: flex-start;
   gap: 18px;
-  align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .brand-block {
-  max-width: 680px;
+  max-width: 880px;
 }
 
 .eyebrow,
@@ -85,10 +84,9 @@ h2 {
 }
 
 h1 {
-  font-size: clamp(2.05rem, 3.2vw, 3.2rem);
+  font-size: clamp(1.9rem, 2.4vw, 2.6rem);
   font-weight: 700;
-  letter-spacing: -0.04em;
-  max-width: 10ch;
+  letter-spacing: -0.03em;
 }
 
 h2 {
@@ -114,10 +112,10 @@ h3 {
 }
 
 .subhead {
-  margin: 8px 0 0;
-  max-width: 52ch;
-  font-size: 0.94rem;
-  line-height: 1.45;
+  margin: 10px 0 0;
+  max-width: 78ch;
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 .toolbar-controls {
@@ -666,12 +664,12 @@ canvas {
 }
 
 .def-canvas-grid {
-  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .def-canvas-frame {
-  height: clamp(360px, 56vh, 560px);
-  min-height: 360px;
+  height: clamp(420px, 62vh, 640px);
+  min-height: 420px;
   background: #07111d;
 }
 
