@@ -1,0 +1,11 @@
+dev_screenshots/
+.DS_Store
+.claude/
+
+# Track the lightweight JSON bundles served by GitHub Pages; keep heavy
+# Python artifacts (NPZ tensors, sanity GIFs, native run.json) out of git —
+# they live in CVC-Lab/darboux-igph and are produced by `darboux-export-web`.
+artifacts_out/**/trajectory.npz
+artifacts_out/**/target.npz
+artifacts_out/**/preview.gif
+artifacts_out/**/run.json
