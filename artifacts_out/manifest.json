@@ -19,13 +19,13 @@
       "web_bundle_ref": "web_bundle.json"
     },
     {
-      "run_id": "circle_to_crescent_m1_adaptive_seed42_20260526T213153",
+      "run_id": "circle_to_crescent_m1_adaptive_seed42_20260527T100606",
       "example": "circle_to_crescent",
       "method": "m1_adaptive",
       "seed": 42,
       "schema_version": "0.1.0",
-      "href": "circle_to_crescent_m1_adaptive_seed42_20260526T213153",
-      "web_bundle_ref": "web_bundle.json"
+      "href": "circle_to_crescent_m1_adaptive_seed42_20260527T100606",
+      "web_bundle_ref": null
     },
     {
       "run_id": "circle_to_crescent_m1_proposed_minimal_seed42_20260526T160310",
@@ -34,15 +34,6 @@
       "seed": 42,
       "schema_version": "0.1.0",
       "href": "circle_to_crescent_m1_proposed_minimal_seed42_20260526T160310",
-      "web_bundle_ref": "web_bundle.json"
-    },
-    {
-      "run_id": "oval_to_star_m1_adaptive_seed42_20260526T213834",
-      "example": "oval_to_star",
-      "method": "m1_adaptive",
-      "seed": 42,
-      "schema_version": "0.1.0",
-      "href": "oval_to_star_m1_adaptive_seed42_20260526T213834",
       "web_bundle_ref": "web_bundle.json"
     }
   ]
