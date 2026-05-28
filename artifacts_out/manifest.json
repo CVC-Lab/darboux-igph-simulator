@@ -61,7 +61,7 @@
       "seed": 42,
       "schema_version": "0.1.0",
       "href": "oval_to_star_proposed_adversarial_seed42_20260527T124736",
-      "web_bundle_ref": null
+      "web_bundle_ref": "web_bundle.json"
     },
     {
       "run_id": "oval_to_star_proposed_curriculum_seed42_20260527T102604",
@@ -80,6 +80,33 @@
       "schema_version": "0.1.0",
       "href": "oval_to_star_proposed_curriculum_seed42_20260527T120519",
       "web_bundle_ref": "web_bundle.json"
+    },
+    {
+      "run_id": "sphere_to_cylinder_m1_adaptive_seed42_20260527T200745",
+      "example": "sphere_to_cylinder",
+      "method": "m1_adaptive",
+      "seed": 42,
+      "schema_version": "0.1.0",
+      "href": "sphere_to_cylinder_m1_adaptive_seed42_20260527T200745",
+      "web_bundle_ref": null
+    },
+    {
+      "run_id": "sphere_to_cylinder_m1_adaptive_seed42_20260527T203030",
+      "example": "sphere_to_cylinder",
+      "method": "m1_adaptive",
+      "seed": 42,
+      "schema_version": "0.1.0",
+      "href": "sphere_to_cylinder_m1_adaptive_seed42_20260527T203030",
+      "web_bundle_ref": null
+    },
+    {
+      "run_id": "sphere_to_cylinder_proposed_adversarial_seed42_20260527T210449",
+      "example": "sphere_to_cylinder",
+      "method": "proposed_adversarial",
+      "seed": 42,
+      "schema_version": "0.1.0",
+      "href": "sphere_to_cylinder_proposed_adversarial_seed42_20260527T210449",
+      "web_bundle_ref": null
     }
   ]
 }
